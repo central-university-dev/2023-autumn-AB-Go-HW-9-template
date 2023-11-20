@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package types;
+
+// Specify the Go package for the generated code.
+option go_package = "./;types";
+
+// Message demonstrating various Protobuf field types.
+message ExampleTypes {
+  // Scalar types
+  int32 int_field = 1;          // An integer field
+  float float_field = 2;        // A floating point field
+  double double_field = 3;      // A double precision floating point field
+  string string_field = 4;      // A string field
+  bool bool_field = 5;          // A boolean field
+  bytes bytes_field = 6;        // A field for raw bytes
+
+  ExampleEnum enum_field = 7;   // An enum field
+
+  // Repeated (array) fields
+  repeated int32 repeated_int_field = 8;  // A repeated field (like an array) for integers
+
+  // Map fields
+  map<string, int32> map_field = 9;       // A map field, mapping from string to int
+
+
+  NestedMessage nested_message = 10;      // A nested message field
+
+  //Oneof field
+  oneof test_oneof {
+    string oneof_string = 11;
+    int32 oneof_int = 12;
+  }
+
+  // Reserve field numbers and names
+  reserved 13, 15, 16;          // Reserve field numbers
+  reserved 20 to 30;          // Reserve field numbers
+  reserved "deprecated_field";  // Reserve field name
+  // Example of a new field added later
+  string new_field = 14;
+  /*
+  The reserved keyword in the Protobuf schema helps prevent accidental reuse of field numbers or names, which could lead to compatibility issues in serialized data.
+  In the Go program, you can use the new field (NewField) normally, but you cannot use any reserved fields.
+  This example demonstrates how to evolve a Protobuf schema over time while ensuring that older serialized data remains compatible with newer versions of the schema.
+  */
+}
+
+// Nested message
+message NestedMessage {
+  string nested_field = 1;   // A nested field within a nested message
+}
+
+// Enum type
+enum ExampleEnum {
+  UNKNOWN = 0;
+  OPTION_ONE = 1;
+  OPTION_TWO = 2;
+}

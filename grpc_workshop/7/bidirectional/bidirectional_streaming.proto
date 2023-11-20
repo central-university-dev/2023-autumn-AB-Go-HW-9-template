@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package bidirectional;
+
+option go_package = "./;bidirectional";
+
+service ChatService {
+  // Chat initiates a bidirectional stream between the client and the server.
+  rpc Chat(stream ChatMessage) returns (stream ChatMessage);
+}
+
+// The message used in the chat.
+message ChatMessage {
+  string text = 1;
+}

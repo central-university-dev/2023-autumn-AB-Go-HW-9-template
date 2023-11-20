@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package validation;
+
+import "validate/validate.proto";
+
+option go_package = "./;validation";
+
+service ValidationService {
+  rpc CreateUser (CreateUserRequest) returns (CreateUserResponse);
+}
+
+message CreateUserRequest {
+  string name = 1 [(validate.rules).string.min_len = 1];
+  int32 age = 2 [(validate.rules).int32.gte = 0];
+  string email = 3 [(validate.rules).string.email = true];
+}
+
+message CreateUserResponse {
+  string message = 1;
+}

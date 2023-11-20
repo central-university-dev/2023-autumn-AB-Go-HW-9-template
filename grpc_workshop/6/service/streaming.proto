@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package streaming;
+
+// Specify the Go package for the generated code.
+option go_package = "./;streaming";
+
+service StreamingService {
+  // StreamMessages streams a series of messages
+  rpc StreamMessages (StreamRequest) returns (stream StreamResponse);
+}
+
+// The request message containing parameters for streaming.
+message StreamRequest {
+  int32 count = 1; // Number of messages to stream
+}
+
+// The response message containing the streamed message.
+message StreamResponse {
+  string message = 1;
+}

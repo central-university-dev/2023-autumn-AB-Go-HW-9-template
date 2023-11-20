@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package service;
+
+// Specify the Go package for the generated code.
+option go_package = "./;quotes";
+
+// The greeting service definition.
+service GreetingService {
+  // Sends a greeting
+  rpc SayHello (HelloRequest) returns (HelloReply) {}
+}
+
+// The request message containing the user's name.
+message HelloRequest {
+  string name = 1;
+}
+
+// The response message containing the greetings.
+message HelloReply {
+  string message = 1;
+}

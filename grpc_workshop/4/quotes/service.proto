@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package quotes;
+
+// Specify the Go package for the generated code.
+option go_package = "./;quotes";
+
+service QuotesService {
+  // GetQuotes returns a list of quotes or an error
+  rpc GetQuotes (QuotesRequest) returns (QuotesResponse);
+}
+
+// Request message for GetQuotes.
+message QuotesRequest {
+  int32 number_of_quotes = 1;
+}
+
+// Response message for GetQuotes.
+message QuotesResponse {
+  repeated string quotes = 1;
+}
